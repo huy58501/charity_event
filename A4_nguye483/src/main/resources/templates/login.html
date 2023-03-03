@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Log In Form</title>
+<link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}">	
+</head>
+<body>
+<header th:insert="~{fragments/mainFragment :: header-login}">  </header>
+<div class="login-form">
+
+	<p class="login-error" th:if="${param.error}">Invalide User Name Or Password.</p>
+	<p class="login-error" th:if="${param.logout}"> You have logged out.</p>
+
+	<form method="post" th:action="@{/login}">  
+		<p><label for="userName">User Name: 
+			<input type="text" id="userName" name="username" value="foo"required>
+			</label>
+		</p>
+		<p><label for="pw">Password: 
+			<input type="password" id="password" name="password" value="4444"required>
+		</p>
+		<p> <input type="submit" name="login" value="Log In"></p>
+	</form>
+</div>
+<footer th:insert="fragments/mainFragment :: footer(${accountName},${year})"> </footer>
+</body>
+</html>

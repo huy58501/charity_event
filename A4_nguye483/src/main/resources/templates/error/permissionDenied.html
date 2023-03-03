@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Permission Denied</title>
+<link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}">	
+</head>
+<body>
+<header th:insert="~{fragments/mainFragment :: header-denied}">  </header>
+	<h1>Permission Denied </h1>
+	<p>Sorry, you are not authorized to view this page.</p>
+	
+	
+<footer th:insert="fragments/mainFragment :: footer(${accountName},${year})"> </footer>
+</body>
+</html>

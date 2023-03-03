@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>MidTerm - Hoang Chuong Nguyen</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<h1>Sheet Music Purchases </h1>
+<!-- create table -->
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Title</th>
+		<th>Price</th>
+		<th>Delivery</th>
+		<th>Total</th>
+	</tr>
+	<!-- assign value from database to table row by loop -->
+	<tr th:each="p: ${purchases}">
+		<td th:text="*{p.id}"></td>
+		<td th:text="*{p.title}"></td>
+		<td th:text="*{p.price}"></td>
+		<!-- if delivery value in Purchase Object equal to ID value in Delivery Object 
+		then output the data relate to it -->
+		<td th:each="d : ${deliveries}" th:if="${p.delivery eq d.id}"
+			th:text="*{d.name}"></td>
+		<td th:each="d : ${deliveries}" th:if="${p.delivery eq d.id}"
+			th:text="*{d.fee + p.price}"></td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<header th:fragment="header-index(accountName)">
+	<h1>WeHelp Charity Events</h1>
+	<h2><b>Welcome</b></h2>
+	
+	<nav th:if="${accountName} == 'anonymousUser'">
+		<a href="/txns/add" th:href="@{/txns/add}">Add</a>
+		<a th:href="@{/txns/index}">Transactions</a>
+		<a th:href="@{/login}">Sign In</a>
+	</nav>
+	
+	<nav th:unless="${accountName} == 'anonymousUser'">
+		<a href="/txns/add" th:href="@{/txns/add}">Add</a>
+		<a th:href="@{/txns/index}">Transactions</a>
+		<a href="/logout" th:href="@{/logout}">Log Out </a>
+	</nav>
+</header>
+
+<header th:fragment="header-denied">
+	<h1>WeHelp Charity Events</h1>
+	<h2><b>Welcome</b></h2>
+	<nav>
+		<a href="/" th:href="@{/}">Home</a>
+		<a href="/logout" th:href="@{/logout}">Log Out </a>
+	</nav>
+</header>
+
+<header th:fragment="header-login">
+	<h1>WeHelp Charity Events</h1>
+	<h2><b>Sign In</b></h2>
+	<nav>
+		<a href="/" th:href="@{/}">Home</a>
+	</nav>
+</header>
+
+<header th:fragment="header-add">
+	<h1>WeHelp Charity Events</h1>
+	<h2><b>Welcome</b></h2>
+	<nav>
+		<a href="/" th:href="@{/}">Home</a>
+		<a th:href="@{/txns/index}">Transactions</a>
+		<a href="/logout" th:href="@{/logout}">Log Out </a>
+	</nav>
+</header>
+
+<header th:fragment="header-tran">
+	<h1>WeHelp Charity Events</h1>
+	<h2><b>Welcome</b></h2>
+	<nav>
+		<a href="/" th:href="@{/}">Home</a>
+		<a href="/txns/add" th:href="@{/txns/add}">Add</a>
+		<a href="/logout" th:href="@{/logout}">Log Out </a>
+	</nav>
+</header>
+
+<footer class="footer" th:fragment="footer(accountName, year)">
+	  <div th:unless="${accountName} == 'anonymousUser'">&copy; <span th:text="${year}"></span> Hoang Chuong Nguyen <br> 
+	  							  Logged in as <span th:text="${accountName}"></span> </div>
+      <div th:if="${accountName} == 'anonymousUser'">&copy; <span th:text="${year}"></span> Hoang Chuong Nguyen</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>WeHelp Charity Events: Welcome</title>
+<link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}">	
+</head>
+<body>
+
+	<header th:insert="fragments/mainFragment :: header-index(${accountName})">  </header>
+	
+	<h3>Current Events</h3>
+	
+	<!-- TODO only show this if there are no events -->
+	<div th:unless="${session.eventList}" th:text="There are no upcoming events."> </div>
+	
+	<!-- TODO only show this if there are events -->
+	<div th:if="${session.eventList}">
+		<table class="event-list">
+			<tr><th>Event Name</th><th>Ticket Price</th></tr>
+			<!-- display the events in rows -->
+			<tr th:each="e : *{session.eventList}">
+					<td th:text="${e.eventName}"></td>
+					<td th:text="${#numbers.formatCurrency(e.ticketCost)}"></td>
+			</tr>
+		</table>
+	</div>
+
+<footer th:insert="fragments/mainFragment :: footer(${accountName},${year})"> </footer>
+</body>
+</html>

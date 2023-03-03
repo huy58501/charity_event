@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>WeHelp: Add Transaction</title>
+<link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}">	
+</head>
+<body>
+
+<header th:insert="~{fragments/mainFragment :: header-tran}">  </header>
+	
+	<h3>Transactions</h3>
+	
+	<!-- TODO show this div only if there are no transactions to list -->
+	<div class="warn" th:unless="${trans}" th:text="No transactions to view."></div>
+	
+	
+	<!-- TODO show this table only when there are transactions to list -->
+	<table th:if="${trans}">
+
+		<tr><th>Event</th><th>#Tickets</th><th>Contact</th></tr>
+		<!-- TODO fill in transaction info, use the EVENT NAME, not the id -->
+		<tr th:each="t: ${trans}">
+			<td th:each="e : ${events}"
+				th:if="${t.event eq e.id}"
+				th:text="*{e.eventName}"></td>
+			<td th:text="*{t.numTickets}"></td>
+			<td th:text="*{t.contact}"></td>
+		</tr>
+	</table>
+	
+<footer th:insert="fragments/mainFragment :: footer(${accountName},${year})"> </footer>
+</body>
+</html>

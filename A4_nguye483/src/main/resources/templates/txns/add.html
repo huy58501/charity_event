@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>WeHelp: Add Transaction</title>
+<link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}">	
+</head>
+<body>
+
+<header th:insert="~{fragments/mainFragment :: header-add}">  </header>
+	
+	<form th:action="@{/addNew}" method="post">
+		<p><label for="events">Event:
+			<select id="event" name="event">
+				<!-- TODO create <option>s for each event -->
+				<option th:each="e: ${events}"
+							th:value="${e.id}"
+							th:text="${e.eventName}">team
+				</option>
+			</select>
+		</label>
+		</p>
+		<p><label for="num">Number of Tickets:
+			<input type="number" value="4" min="1" id="num" name="numTickets" required>
+		</label>
+		</p>
+		<p><label for="email">Contact Email:
+			<input type="email" id="email" name="contact" required> 
+		</label>
+		</p>
+		<p><input type="submit"></p>
+	</form>
+		
+
+<footer th:insert="fragments/mainFragment :: footer(${accountName},${year})"> </footer>
+	
+</body>
+</html>
